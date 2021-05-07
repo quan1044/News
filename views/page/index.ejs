@@ -1,0 +1,99 @@
+<%- include ('../layout/head.ejs') %>
+
+<body>
+
+	<%- include ('../layout/navigator.ejs') %>
+
+    <!-- Page Content -->
+    <div class="container">
+
+		<%- include ('../layout/slide.ejs') %>
+
+        <div class="space20"></div>
+
+
+        <div class="row main-left">
+			<%- include ('../layout/sidebar.ejs') %>
+
+            <div class="col-md-9">
+	            <div class="panel panel-default">            
+	            	<div class="panel-heading" style="background-color:#337AB7; color:white;" >
+	            		<h2 style="margin-top:0px; margin-bottom:0px;">Tin Tức</h2>
+	            	</div>
+
+	            	<div class="panel-body">
+						<% lstTheloai.forEach(theloai => { %>
+							<% if (theloai.lstTintuc.length > 0) { %>
+								<!-- item -->
+								<div class="row-item row">
+									<h3>
+										<a href="#"><%= theloai.Ten %> </a> | 	
+										<% if (theloai.lstLoaitin.length > 0) { %>
+											<% theloai.lstLoaitin.forEach(loaitin => { %>
+												<small><a href="page/loaitin/<%= loaitin.TenKhongDau %>/page=1"><i><%= loaitin.Ten %> </i></a>/</small>
+											<% }) %>
+										<% } %>
+									</h3>
+									<div class="col-md-8 border-right">
+										<div class="col-md-5">
+											<a href="page/tintuc/<%= theloai.lstTintuc[0].TieuDeKhongDau %> ">
+												<img class="img-responsive" src="upload/img/tintuc/<%= theloai.lstTintuc[0].Hinh %> " alt="">
+											</a>
+										</div>
+
+										<div class="col-md-7">
+											<h3><%= theloai.lstTintuc[0].TieuDe %> </h3>
+											<p><%- theloai.lstTintuc[0].TomTat %> </p>
+											<a class="btn btn-primary" href="page/tintuc/<%= theloai.lstTintuc[0].TieuDeKhongDau %>">Xem thêm <span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+
+									</div>
+									
+
+									<div class="col-md-4">
+										<% if (theloai.lstTintuc.length < 5) { %>
+											<% for( let index = 1; index < theloai.lstTintuc.length; index++ ) { %>
+												<a href="page/tintuc/<%= theloai.lstTintuc[index].TieuDeKhongDau %>">
+													<h4>
+														<span class="glyphicon glyphicon-list-alt"></span>
+														<%= theloai.lstTintuc[index].TieuDe %> 
+													</h4>
+												</a>
+											<% } %>
+										<% } else { %>
+											<% for( let index = 1; index < 5; index++ ) { %>
+												<a href="page/tintuc/<%= theloai.lstTintuc[0].TieuDeKhongDau %>">
+													<h4>
+														<span class="glyphicon glyphicon-list-alt"></span>
+														<%= theloai.lstTintuc[index].TieuDe %> 
+													</h4>
+												</a>
+											<% } %>
+										<% } %> 
+										
+
+					
+									</div>
+									
+									<div class="break"></div>
+								</div>
+								<!-- end item -->
+							<% } %>
+							 
+						<% }) %>
+
+
+					</div>
+	            </div>
+        	</div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- end Page Content -->
+
+	<%- include ('../layout/footer.ejs') %>
+
+	<%- include ('../layout/script.ejs') %>
+</body>
+
+</html>

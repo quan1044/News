@@ -1,0 +1,19 @@
+<div class="col-md-3 ">
+    <ul class="list-group" id="menu">
+        <li href="#" class="list-group-item menu1 active">
+            Menu
+        </li>
+        <% lstTheloai.forEach(theloai => { %>
+            <li href="#" class="list-group-item menu1">
+                <%= theloai.Ten %> 
+            </li>
+            <ul>
+                <% theloai.lstLoaitin.forEach(loaitin => { %>
+                    <li class="list-group-item">
+                        <a href="page/loaitin/<%= loaitin.TenKhongDau %>/page=1"> <%= loaitin.Ten %> </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% }) %>
+    </ul>
+</div>
